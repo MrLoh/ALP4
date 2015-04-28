@@ -39,7 +39,11 @@ func (root *node) Insert(el int) List {
 func (root *node) InsertAt(el int, n int) List {
 	pos := root
 	for i := 0; i < n; i++ {
-		pos = pos.next
+		if pos.next != nil {
+			pos = pos.next
+		} else {
+			panic("IndexOutOfBound")
+		}
 	}
 	if pos.next != nil {
 		newNode := node{item: el, prev: pos, next: pos.next}
@@ -55,7 +59,11 @@ func (root *node) InsertAt(el int, n int) List {
 func (root *node) DeleteAt(n int) List {
 	pos := root
 	for i := 0; i < n; i++ {
-		pos = pos.next
+		if pos.next != nil {
+			pos = pos.next
+		} else {
+			panic("IndexOutOfBound")
+		}
 	}
 	if pos.next != nil {
 		if pos.next.next != nil {
